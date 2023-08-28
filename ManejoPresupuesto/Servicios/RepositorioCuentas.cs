@@ -7,7 +7,10 @@ namespace ManejoPresupuesto.Servicios
     public interface IRepositorioCuentas
     {
         Task<IEnumerable<Cuenta>> Buscar(int usuarioId);
+        Task<Cuenta> ObtenerPorId(int id, int usuarioId);
         Task Crear(Cuenta cuenta);
+        Task Actualizar(CuentaCreacionDTO cuenta);
+        Task Borrar(int id);
     }
     public class RepositorioCuentas: IRepositorioCuentas
     {
@@ -28,6 +31,21 @@ namespace ManejoPresupuesto.Servicios
             cuenta.Id = id;
         }
 
+        public async Task Actualizar(CuentaCreacionDTO cuenta)
+        {
+            using var connection = new SqlConnection(this.connectionString);
+            await connection.ExecuteAsync(@"update Cuentas 
+                                       set Nombre = @Nombre, Balance = @Balance, Descripcion = @Descripcion,
+                                       TipoCuentaId = @TipoCuentaId
+                                       WHERE Id = @Id;", cuenta);
+        }
+
+        public async Task Borrar(int id)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("DELETE Cuentas WHERE Id = @Id", new {id });
+        }
+
         public async Task<IEnumerable<Cuenta>> Buscar(int usuarioId)
         {
             using var connection = new SqlConnection(connectionString);
@@ -37,6 +55,18 @@ namespace ManejoPresupuesto.Servicios
                                                          ON tc.Id = c.TipoCuentaId
                                                          WHERE tc.UsuarioId = @UsuarioId
                                                          ORDER BY tc.Orden;", new {usuarioId});
+        }
+
+        public async Task<Cuenta> ObtenerPorId(int id, int usuarioId)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryFirstOrDefaultAsync<Cuenta>(@"
+                                                         SELECT c.Id, c.Nombre, c.Balance, c.Descripcion, TipoCuentaId
+                                                         FROM Cuentas c
+                                                         INNER JOIN TiposCuentas tc
+                                                         ON tc.Id = c.TipoCuentaId
+                                                         WHERE tc.UsuarioId = @UsuarioId AND c.Id = @Id
+                                                         ORDER BY tc.Orden;", new {id, usuarioId});
         }
     }
 }

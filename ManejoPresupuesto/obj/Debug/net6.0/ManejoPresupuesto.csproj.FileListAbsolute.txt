@@ -65,3 +65,6 @@ C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\obj\Debug\net6.0\refint\
 C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\obj\Debug\net6.0\ManejoPresupuesto.pdb
 C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\obj\Debug\net6.0\ManejoPresupuesto.genruntimeconfig.cache
 C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\obj\Debug\net6.0\ref\ManejoPresupuesto.dll
+C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\obj\Debug\net6.0\scopedcss\Views\Cuentas\Index.cshtml.rz.scp.css
+C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\bin\Debug\net6.0\AutoMapper.dll
+C:\Projects\ASP.NET\ManejoPresupuesto\ManejoPresupuesto\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
