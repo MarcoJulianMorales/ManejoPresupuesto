@@ -1,0 +1,34 @@
+﻿@using ManejoPresupuesto.Models.TiposCuentas;
+@model IEnumerable<TipoCuenta>
+
+@{
+    ViewData["Title"] = "Tipos Cuentas";
+}
+
+<h1>Tipos de Cuentas</h1>
+<h5>El tipo de cuenta se refiere a cómo agrupar cuentas.
+    Ejemplos: Préstamos, Tarjetas, etc.
+</h5>
+
+<a asp-action="Crear" asp-controller="TiposCuenta" class="btn btn-primary mb-3">Crear</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var tipocuenta in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@tipocuenta.Id">Editar</a>
+                    <a class="btn btn-danger">Borrar</a>
+                </td>
+                <td>@tipocuenta.Nombre</td>
+            </tr>
+        }
+    </tbody>
+</table>
