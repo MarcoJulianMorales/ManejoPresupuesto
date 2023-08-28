@@ -1,5 +1,8 @@
+*.dll
+*.pdb
 
 .vs/
 
-ManejoPresupuesto/bin/
-ManejoPresupuesto/obj/
+/ManejoPresupuesto/bin/
+
+/ManejoPresupuesto/obj/
